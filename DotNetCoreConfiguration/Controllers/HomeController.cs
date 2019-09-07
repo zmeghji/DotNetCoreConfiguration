@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DotNetCoreConfiguration.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
 
 namespace DotNetCoreConfiguration.Controllers
 {
@@ -14,15 +15,18 @@ namespace DotNetCoreConfiguration.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration configuration;
+        private readonly IWebHostEnvironment env;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, IWebHostEnvironment env)
         {
             _logger = logger;
             this.configuration = configuration;
+            this.env = env;
         }
 
         public IActionResult Index()
         {
+            ViewBag.Env = env.EnvironmentName;
             ViewBag.Value1 = configuration.GetValue<string>("section:section0:key:key0");
             ViewBag.Value2 = configuration.GetValue<string>("section:section0:key:key1");
 

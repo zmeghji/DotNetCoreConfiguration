@@ -26,7 +26,12 @@ namespace DotNetCoreConfiguration
                 })
                 .ConfigureAppConfiguration( (hostBuilderContext,configurationBuilder) =>
                 {
-                    configurationBuilder.AddXmlFile(Path.Combine(Directory.GetCurrentDirectory() ,"config.xml"));
+                    if (hostBuilderContext.HostingEnvironment.IsDevelopment()){
+                        configurationBuilder.AddXmlFile(Path.Combine(Directory.GetCurrentDirectory(), "config.Development.xml"));
+                    }
+                    else {
+                        configurationBuilder.AddXmlFile(Path.Combine(Directory.GetCurrentDirectory(), "config.xml"));
+                    }
                     configurationBuilder.AddIniFile(Path.Combine(Directory.GetCurrentDirectory(), "config.ini"));
 
                 }

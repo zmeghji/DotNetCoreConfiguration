@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <section name="appSettings">
+    <key name="defaultFramework">Ruby on Rails</key>
+    <key name="defaultLanguage">Ruby</key>
+  </section>
+  <section name="section0">
+    <key name="key0">Ruby</key>
+    <key name="key1">Python</key>
+  </section>
+  <section name="section1">
+    <key name="key0">Rails</key>
+    <key name="key1">Django</key>
+  </section>
+</configuration>

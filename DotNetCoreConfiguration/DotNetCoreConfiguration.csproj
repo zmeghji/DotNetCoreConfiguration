@@ -6,11 +6,13 @@
 
 
   <ItemGroup>
+    <None Remove="config.Development.xml" />
     <None Remove="config.xml" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <Content Include="config.Development.xml" />
     <Content Include="config.xml" />
   </ItemGroup>
 
