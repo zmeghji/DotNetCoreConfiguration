@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <section name="appSettings">
+    <key name="defaultFramework">.NET Core</key>
+    <key name="defaultLanguage">C#</key>
+  </section>
+  <section name="section0">
+    <key name="key0">c#</key>
+    <key name="key1">Java</key>
+  </section>
+  <section name="section1">
+    <key name="key0">.NET Core</key>
+    <key name="key1">Spring Boot</key>
+  </section>
+</configuration>
