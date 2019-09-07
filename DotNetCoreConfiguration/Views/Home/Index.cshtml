@@ -1,6 +1,9 @@
-﻿@{
+﻿@using Microsoft.Extensions.Options
+@using DotNetCoreConfiguration.Options
+@{
     ViewData["Title"] = "Home Page";
 }
+@inject IOptions<DataSourceOptions> options
 <h2>@ViewBag.Value1</h2>
 <h2>@ViewBag.Value2</h2>
 <h2>@ViewBag.Value3</h2>
@@ -14,7 +17,17 @@
 <h2>@ViewBag.IniValue4</h2>
 <h2>@ViewBag.IniValue5</h2>
 
-
+<div class="row">
+    <div class="col-md-3">
+        <label>Data Source Info</label>
+    </div>
+    <div class="col-md-6">
+        <ul>
+            <li>Classification: @options.Value.Classification</li>
+            <li>Type: @options.Value.Type</li>
+        </ul>
+    </div>
+</div>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
