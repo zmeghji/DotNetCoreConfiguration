@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using DotNetCoreConfiguration.Options;
 using DotNetCoreConfiguration.Services;
@@ -9,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace DotNetCoreConfiguration
@@ -31,6 +34,10 @@ namespace DotNetCoreConfiguration
             services.AddRazorPages();
             services.Configure<DataSourceOptions>(Configuration.GetSection("DataSource"));
             services.AddSingleton<IRestrictedDataService, RestrictedDataService>();
+            var physicalFileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
+            var embeddedFileProvider = new EmbeddedFileProvider(Assembly.GetEntryAssembly());
+            var compositeFileProvider = new CompositeFileProvider(physicalFileProvider, embeddedFileProvider);
+            services.AddSingleton<IFileProvider>(compositeFileProvider);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

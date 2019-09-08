@@ -1,0 +1,21 @@
+﻿@using Microsoft.Extensions.Options
+@using DotNetCoreConfiguration.Options
+@using Microsoft.Extensions.FileProviders;
+@{
+    ViewData["Title"] = "File Page";
+}
+@inject IFileProvider fileProvider
+
+    <ul>
+        @foreach (var directoryContent in fileProvider.GetDirectoryContents("").ToList())
+        {
+            @if (directoryContent.IsDirectory)
+            {
+                <li><span class="text-primary">Directory: </span>@directoryContent.Name</li>
+            }
+            else
+            {
+                <li><span class="text-warning">File: </span>@directoryContent.Name</li>
+            }
+        }
+    </ul>
