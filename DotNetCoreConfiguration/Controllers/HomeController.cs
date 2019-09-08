@@ -51,6 +51,7 @@ namespace DotNetCoreConfiguration.Controllers
             ViewBag.IniValue5 = configuration.GetValue<string>("sectionZ:subsection1:key");
 
             ViewBag.Data = restrictedDataService.GetData(Environment.GetEnvironmentVariable("DevSecret"));
+            ViewBag.MoreData = restrictedDataService.GetMoreData(configuration.GetValue<string>("DevSecret2"));
             return View();
         }
 
