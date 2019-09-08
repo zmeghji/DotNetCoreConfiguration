@@ -26,6 +26,11 @@ namespace DotNetCoreConfiguration.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.IDEProvider = configuration.GetValue<string>("IDEProvider");
+            ViewBag.CIProvider = configuration.GetValue<string>("CIProvider");
+
+
+            ViewBag.CloudProvider = configuration.GetValue<string>("CloudProvider");
             ViewBag.Env = env.EnvironmentName;
             ViewBag.Value1 = configuration.GetValue<string>("section:section0:key:key0");
             ViewBag.Value2 = configuration.GetValue<string>("section:section0:key:key1");

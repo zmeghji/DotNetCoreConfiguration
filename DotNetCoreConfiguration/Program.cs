@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using DotNetCoreConfiguration.ConfigurationSources;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -33,7 +34,7 @@ namespace DotNetCoreConfiguration
                         configurationBuilder.AddXmlFile(Path.Combine(Directory.GetCurrentDirectory(), "config.xml"));
                     }
                     configurationBuilder.AddIniFile(Path.Combine(Directory.GetCurrentDirectory(), "config.ini"));
-
+                    configurationBuilder.Add<CsvConfigurationSource>(s => s.Path = "config.csv");
                 }
                 );
     }
