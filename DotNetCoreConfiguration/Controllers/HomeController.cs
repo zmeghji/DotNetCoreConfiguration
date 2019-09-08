@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using DotNetCoreConfiguration.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
+using DotNetCoreConfiguration.Services;
 
 namespace DotNetCoreConfiguration.Controllers
 {
@@ -16,12 +17,14 @@ namespace DotNetCoreConfiguration.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration configuration;
         private readonly IWebHostEnvironment env;
+        private readonly IRestrictedDataService restrictedDataService;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, IWebHostEnvironment env)
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, IWebHostEnvironment env, IRestrictedDataService restrictedDataService)
         {
             _logger = logger;
             this.configuration = configuration;
             this.env = env;
+            this.restrictedDataService = restrictedDataService;
         }
 
         public IActionResult Index()
@@ -47,6 +50,7 @@ namespace DotNetCoreConfiguration.Controllers
             ViewBag.IniValue4 = configuration.GetValue<string>("sectionZ:subsection0:key");
             ViewBag.IniValue5 = configuration.GetValue<string>("sectionZ:subsection1:key");
 
+            ViewBag.Data = restrictedDataService.GetData(Environment.GetEnvironmentVariable("DevSecret"));
             return View();
         }
 

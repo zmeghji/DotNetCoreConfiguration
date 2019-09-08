@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetCoreConfiguration.Options;
+using DotNetCoreConfiguration.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,7 @@ namespace DotNetCoreConfiguration
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.Configure<DataSourceOptions>(Configuration.GetSection("DataSource"));
+            services.AddSingleton<IRestrictedDataService, RestrictedDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
